@@ -1,6 +1,5 @@
-import { Module, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { MorganMiddleware } from './utils/morganMiddleware';
 import { ScheduleModule } from '@nestjs/schedule';
 import { LocationModule } from './modules/location/location.module';
 
@@ -30,9 +29,4 @@ import { LocationModule } from './modules/location/location.module';
   ]
 })
 
-export class AppModule {
-  configure(consumer: MiddlewareConsumer) {
-    MorganMiddleware.configure('combined')
-    consumer.apply(MorganMiddleware).forRoutes({ path: '*', method: RequestMethod.ALL })
-  }
-}
+export class AppModule {}
