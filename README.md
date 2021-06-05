@@ -1,6 +1,6 @@
-# Estetic API
+# Gubal backend
 
-Node.js + TypeScript API for Estetic frontend. Uses Nest.js framework. These instructions will contain detailed information on necessary steps to get up and running with the project.
+Node.js + TypeScript backend for Gubal dashboard. Uses Nest.js framework
 
 ## First steps
 
@@ -22,14 +22,6 @@ npm run seed
 
 # Run development watch mode
 npm run start:debug
-```
-
-## DigitalOcean deploy
-
-### Stage
-
-```bash
-npm run docker:update:stage
 ```
 
 ## Migrations
