@@ -30,4 +30,13 @@ export class LocationService {
     location.updateValues({ ...parameters });
     return this.locationRepository.save(location);
   }
+
+  async delete(id: number) {
+    const location = await this.get(id);
+
+    if (!location)
+      throw new Error(`Location id [${id}] is invalid`);
+
+    await this.locationRepository.delete(id);
+  }
 }

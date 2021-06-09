@@ -8,11 +8,11 @@ import {
   UsePipes,
   UseGuards,
   Param,
-  ParseIntPipe
+  ParseIntPipe,
+  Delete
 } from '@nestjs/common'
-import { AuthGuard } from '@nestjs/passport'
 import { TransformAndValidate } from '../../common/pipes/validate'
-import { GetLocationsDto, LocationDto, LocationListDto, UpdateLocationDto } from './location.dto';
+import { CreateLocationDto, DeleteLocationDto, GetLocationsDto, LocationDto, LocationListDto, UpdateLocationDto } from './location.dto';
 import { LocationService } from './location.service'
 
 @Controller('locations')
@@ -22,14 +22,12 @@ export class LocationController {
   ) {}
 
   @Get()
-  @UseGuards(AuthGuard('jwt'))
   @UsePipes(TransformAndValidate)
   async getLocations(@Query() request: GetLocationsDto): Promise<LocationListDto> {
     return await this.locationService.list(request.skip || 0, request.take || 10);
   }
 
   @Get(':id')
-  @UseGuards(AuthGuard('jwt'))
   @UsePipes(TransformAndValidate)
   async getLocation(@Param('id', ParseIntPipe) id: number): Promise<LocationDto> {
     const location = await this.locationService.get(id);
@@ -38,14 +36,20 @@ export class LocationController {
 
   @Post()
   @UsePipes(TransformAndValidate)
-  async createLocation(@Body() body: LocationDto) {
+  async createLocation(@Body() body: CreateLocationDto) {
     return this.locationService.create(body);
   }
 
   @Put(':id')
-  @UseGuards(AuthGuard('jwt'))
   @UsePipes(TransformAndValidate)
-  async updateLocation(@Param('id', ParseIntPipe) id: number, @Body() body: UpdateLocationDto): Promise<void> {
-    await this.locationService.update(id, body);
+  async updateLocation(@Param('id', ParseIntPipe) id: number, @Body() body: UpdateLocationDto): Promise<LocationDto> {
+    return this.locationService.update(id, body);
+  }
+
+  @Delete(':id')
+  @UsePipes(TransformAndValidate)
+  async deleteLocation(@Param('id', ParseIntPipe) id: number) {
+    await this.locationService.delete(id);
+    return { id };
   }
 }

@@ -10,12 +10,12 @@ function getCorsOrigin() {
     case 'development':
     default:
       return [
-        /^http:\/\/[a-zA-z]+\.localhost:3000$/,
-        /^http:\/\/[a-zA-z]+\.localhost:3001$/,
-        /^http:\/\/[a-zA-z]+\.localhost:3002$/,
-        /^http:\/\/[a-zA-z]+\.localhost\.com:3000$/,
-        /^http:\/\/[a-zA-z]+\.localhost\.com:3001$/,
-        /^http:\/\/[a-zA-z]+\.localhost\.com:3002$/,
+        /^http:\/\/localhost:3000$/,
+        /^http:\/\/localhost:3001$/,
+        /^http:\/\/localhost:3002$/,
+        /^http:\/\/localhost\.com:3000$/,
+        /^http:\/\/localhost\.com:3001$/,
+        /^http:\/\/localhost\.com:3002$/,
       ];
   }
 }

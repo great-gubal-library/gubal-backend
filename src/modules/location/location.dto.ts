@@ -136,3 +136,9 @@ export class UpdateLocationDto {
   @IsString()
   readonly tags: string | null
 }
+
+export class DeleteLocationDto {
+  @IsInt()
+  @Transform(value => Number(value))
+  readonly id: number
+}
