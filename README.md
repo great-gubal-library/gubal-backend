@@ -11,7 +11,7 @@ Node.js + TypeScript backend for Gubal dashboard. Uses Nest.js framework
 
 ```bash
 # Start a dockerized MariaDB
-docker-compose up
+docker-compose up -d
 
 # Install dependencies
 npm i
