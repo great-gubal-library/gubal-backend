@@ -1,0 +1,18 @@
+version: '3.1'
+services:
+  mariadb:
+    container_name: gubal-db
+    image: mariadb
+    ports:
+      - '33065:3306'
+    volumes:
+      - /var/lib/mysql
+      - ./extra-my.cnf:/etc/mysql/conf.d/extra-my.cnf
+      - ./general.log:/var/log/mysql/general.log
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: gubal-dev
+      MYSQL_USER: gubal
+      MYSQL_PASSWORD: gubal
+      MYSQL_ROOT_PASSWORD: password
+      TZ: Europe/Helsinki

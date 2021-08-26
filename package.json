@@ -8,10 +8,14 @@
     "build": "rimraf dist && tsc -p tsconfig.build.json",
     "start:debug": "nest start -e \"node -r dotenv/config\" --debug --watch",
     "lint": "tslint -p tsconfig.json -c tslint.json",
-    "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run",
-    "migration:create": "ts-node ./node_modules/typeorm/cli.js migration:create",
-    "migration:revert": "ts-node ./node_modules/typeorm/cli.js migration:revert",
-    "seed": "ts-node seeds/seed.ts"
+    "migration:run": "typeorm migration:run",
+    "migration:create": "typeorm migration:create",
+    "migration:revert": "typeorm migration:revert",
+    "seed": "ts-node seeds/seed.ts",
+    "db:start": "cd ./devtools/mariadb && docker-compose up -d",
+    "db:stop": "docker stop gubal-db",
+    "db:down": "cd ./devtools/mariadb && docker-compose down",
+    "db:connect": "mysql gubal-dev -h 0.0.0.0 -u root -ppassword -P 33065"
   },
   "dependencies": {
     "@nestjs/common": "7.6.17",

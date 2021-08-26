@@ -9,7 +9,7 @@ import { LocationModule } from './modules/location/location.module';
       useFactory: (): any => ({
         type: 'mariadb',
         host: process.env.MYSQL_HOST,
-        port: 3306,
+        port: process.env.MYSQL_PORT,
         username: process.env.MYSQL_USER,
         password: process.env.MYSQL_PWD,
         database: process.env.MYSQL_DATABASE,
